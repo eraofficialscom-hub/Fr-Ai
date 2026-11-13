@@ -6,5 +6,15 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - name: Run script
-        run: echo "${{ secrets.FR_AI }}"
+      - name: Call AI API
+        env:
+          API_KEY: ${{ secrets.FR_AI }}
+        run: |
+          # এখানে আপনার এআই এপিআই-এর এন্ডপয়েন্ট ও কার্ল কমান্ড দিতে হবে
+          echo "Connecting to AI using secret..."
+          
+          # উদাহরণস্বরূপ জেমিনি বা অন্য কোনো এপিআই কল করার নিয়ম:
+          curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$API_KEY" \
+          -H 'Content-Type: application/json' \
+          -X POST \
+          -d '{"contents":[{"parts":[{"text":"Hello, are you working?"}]}]}'
